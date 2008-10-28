@@ -9,7 +9,7 @@ class CheckTimestamp < Scout::Plugin
       output = "Path: #{path}, Threshold: #{threshold} minutes, Path Timestamp: #{timestamp}, Current Time: #{current_time}, Difference: #{difference}"
       report(:difference => difference, :threshold => threshold)
       if difference > threshold
-        alert(:subject => "File #{path} was older than #{threshold} minutes", :body => output)
+        alert(:subject => "File #{path} was #{difference} minutes old, which is over the threshold of #{threshold} minutes", :body => output)
       end
       return difference
     rescue Exception => e
