@@ -5,7 +5,7 @@ class CheckTimestamp < Scout::Plugin
       path = option(:path)
       timestamp = File.new(path).mtime
       current_time = Time.now
-      difference = ((current_time - timestamp) / 60).round
+      difference = ((current_time - timestamp) / 60).round.to_f
       output = "Path: #{path}, Threshold: #{threshold} minutes, Path Timestamp: #{timestamp}, Current Time: #{current_time}, Difference: #{difference}"
       report(:difference => difference, :threshold => threshold)
       if difference > threshold
