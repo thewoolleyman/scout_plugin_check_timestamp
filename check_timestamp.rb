@@ -1,4 +1,15 @@
 class CheckTimestamp < Scout::Plugin
+  OPTIONS=<<-EOS
+    options:
+      path:
+        name: path
+        notes: path to the file which will have its timestamp checked
+        default: /fully/qualified/path/to/your/file
+      threshold:
+        name: threshold
+        notes: threshold in minutes for the timestamp.  If the timestamp of the file is older than this threshold, an error will be returned.
+        default: 360
+  EOS
   def build_report
     begin
       threshold = option(:threshold).to_f
